@@ -20,6 +20,23 @@ The frontend is built with React.js and typescript. It uses the Axios library to
 - react-icons
 - tailwindcss
 
+## Installation
+
+To install the dependencies, run the following command:
+
+```bash
+cd client
+npm install
+```
+
+To start the development server, run the following command:
+
+```bash
+npm run dev
+```
+
+
+
 # Backend
 
 The backend is built with node.js and express.js. It fetches the data from newsapi.org and caches it in a redis database. The backend has two routes, one for fetching the top headlines and the other for fetching the latest news. The backend is hosted on render.com. For production, redislabs is used as the redis database.
@@ -43,3 +60,18 @@ The backend is built with node.js and express.js. It fetches the data from newsa
 
 - `api/news` - Fetches the latest news.
 - `api/top-headlines` - Fetches the top headlines for hot topics like business, technology, etc.
+
+## Installation
+
+To install the dependencies, run the following command:
+
+```bash
+cd server
+npm install
+```
+
+To start the development server, run the following command:
+
+```bash
+node server
+```
