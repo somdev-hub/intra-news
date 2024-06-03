@@ -35,21 +35,37 @@ const HomePage = (): JSX.Element => {
   // ];
 
   useEffect(() => {
+   /**
+    * The function `getNews` is an asynchronous function that fetches news data from an API and sets
+    * the retrieved data as state.
+    */
     const getNews: () => Promise<void> = async () => {
       try {
         const response = await axios.get(
           "https://intra-news.onrender.com/api/news"
         );
+        if (!response.data) {
+          alert("No data found");
+        }
         setNews(response.data as Article[]);
       } catch (error) {
         console.error(error);
       }
     };
+
+
+   /**
+    * The function `getHeadlines` is an asynchronous function that fetches top headlines from an API
+    * and sets the retrieved data as the top headlines.
+    */
     const getHeadlines: () => Promise<void> = async () => {
       try {
         const response = await axios.get(
           "https://intra-news.onrender.com/api/top-headlines"
         );
+        if (!response.data) {
+          alert("No data found");
+        }
         setTopHeadlines(response.data as TopHeadlines);
       } catch (error) {
         console.error(error);
@@ -60,20 +76,19 @@ const HomePage = (): JSX.Element => {
   }, []);
 
   const [leftSidebar, setLeftSidebar] = useState<boolean>(false);
-  const [rightSidebar, setRightSidebar] = useState<boolean>(false);
 
   return (
     <div className="text-[24px]">
       <Navbar
         setLeftSidebar={setLeftSidebar}
-        setRightSidebar={setRightSidebar}
+        // setRightSidebar={setRightSidebar}
         leftSidebar={leftSidebar}
-        rightSidebar={rightSidebar}
+        // rightSidebar={rightSidebar}
       />
       <div className="flex flex-1 h-full mt-16">
         <div
-          className={` w-full bg-[#242424] fixed md:static h-full md:w-[40%] md:pl-4 px-4 md:px-0 left-${
-            leftSidebar ? "[0%]" : "[-100%]"
+          className={` w-full bg-[#242424] fixed md:static h-full md:w-[40%] md:pl-4 px-4 md:px-0 ${
+            leftSidebar ? "left-[0%]" : "left-[-100%]"
           } overflow-y-scroll md:overflow-hidden md:mr-4 mr-0`}
         >
           <h4 className="text-[1.125rem]">Latest headlines</h4>
@@ -172,24 +187,6 @@ const HomePage = (): JSX.Element => {
             })}
           </div>
         </div>
-        {/* <div
-          className={`w-full bg-[#242424] fixed md:static h-full md:w-[20%] md:pl-4 px-4 md:px-0 right-${
-            rightSidebar ? "[0%]" : "[-100%]"
-          } overflow-y-scroll md:overflow-hidden md:ml-4 ml-0`}
-        >
-          <h4 className="text-[1.125rem]">Shortcuts</h4>
-          <div className="flex flex-wrap gap-5 mt-5">
-            {shortcuts.map((shortcut, index) => (
-              <div
-                key={index}
-                className="p-2 text-[14px] border-2 border-white rounded-lg cursor-pointer
-                hover:bg-slate-400 hover:text-white"
-              >
-                {shortcut}
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
     </div>
   );

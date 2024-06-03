@@ -4,32 +4,21 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({
   leftSidebar,
-  setLeftSidebar,
-  // rightSidebar,
-  setRightSidebar
+  setLeftSidebar
 }: {
   leftSidebar: boolean;
   setLeftSidebar: React.Dispatch<React.SetStateAction<boolean>>;
-  rightSidebar: boolean;
-  setRightSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <div className="fixed top-0 h-10 shadow-md bg-slate-400 p-6 w-full flex items-center">
-      <div className="flex justify-between w-full">
+      <div className="flex gap-6 items-center w-full">
         <GiHamburgerMenu
           onClick={() => {
-            setRightSidebar(false);
             setLeftSidebar(!leftSidebar);
           }}
           className="cursor-pointer"
         />
-        {/* <RiMenu3Line
-          onClick={() => {
-            setLeftSidebar(false);
-            setRightSidebar(!rightSidebar);
-          }}
-          className="cursor-pointer"
-        /> */}
+        <h3 className="text-[1.25rem]">Intra News</h3>
       </div>
     </div>
   );

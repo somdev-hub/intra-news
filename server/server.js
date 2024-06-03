@@ -18,13 +18,6 @@ Redis client. */
 
 const app = express();
 
-client.on("connect", () => {
-  console.log("Redis client connected");
-});
-
-client.on('ready', () => {
-  console.log(client.isReady); // should be true
-});
 client.on("error", (error) => {
   console.error(error);
 });
