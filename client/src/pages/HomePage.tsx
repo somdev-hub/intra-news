@@ -17,31 +17,29 @@ const HomePage = (): JSX.Element => {
     content: string;
   }
 
-  interface TopHeadlines extends Article {
-    //["Politics", "Business", "Sports", "Technology"];
-    Technology: Article[];
-    Business: Article[];
-    Sports: Article[];
-    Politics: Article[];
+  interface TopHeadlines {
+    [category: string]: Article[];
   }
 
   const [news, setNews] = useState<Article[]>([]);
   const [topHeadlines, setTopHeadlines] = useState<TopHeadlines>();
-  const shortcuts: string[] = [
-    "Sports",
-    "Entertainment",
-    "Technology",
-    "Business",
-    "Politics",
-    "Health",
-    "Science",
-    "World"
-  ];
+  // const shortcuts: string[] = [
+  //   "Sports",
+  //   "Entertainment",
+  //   "Technology",
+  //   "Business",
+  //   "Politics",
+  //   "Health",
+  //   "Science",
+  //   "World"
+  // ];
 
   useEffect(() => {
     const getNews: () => Promise<void> = async () => {
       try {
-        const response = await axios.get("https://intra-news.onrender.com/api/news");
+        const response = await axios.get(
+          "https://intra-news.onrender.com/api/news"
+        );
         setNews(response.data as Article[]);
       } catch (error) {
         console.error(error);
@@ -149,20 +147,20 @@ const HomePage = (): JSX.Element => {
                     className="md:w-[7rem] md:h-[7rem] object-cover rounded-lg"
                     alt=""
                   />
-                  <div className="flex flex-col justify-between mt-4 md:mt-0">
+                  <div className="flex flex-col justify-between mt-4 md:mt-0 w-full">
                     <div className="">
                       <h3 className="text-[1.125rem]">
-                        {article?.title?.length > 80
-                          ? article?.title.slice(0, 80) + "..."
+                        {article?.title?.length > 150
+                          ? article?.title.slice(0, 150) + "..."
                           : article?.title}
                       </h3>
                       <p className="text-[14px] mt-2">
-                        {article?.description?.length > 400
-                          ? article?.description.slice(0, 400) + "..."
+                        {article?.description?.length > 500
+                          ? article?.description.slice(0, 500) + "..."
                           : article?.description}
                       </p>
                     </div>
-                    <div className="flex justify-between w-full">
+                    <div className="flex justify-between w-full mt-4">
                       <p className="text-[14px]">{article?.author}</p>
                       <p className="text-[14px]">
                         {new Date(article?.publishedAt).toDateString()}
