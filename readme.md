@@ -35,8 +35,6 @@ To start the development server, run the following command:
 npm run dev
 ```
 
-
-
 # Backend
 
 The backend is built with node.js and express.js. It fetches the data from newsapi.org and caches it in a redis database. The backend has two routes, one for fetching the top headlines and the other for fetching the latest news. The backend is hosted on render.com. For production, redislabs is used as the redis database.
@@ -71,6 +69,9 @@ npm install
 ```
 
 To start the development server, run the following command:
+
+<i>Note: For redis to work, you have to add the REDIS_HOST, REDIS_POST AND REDIS_PASSOWRD in a .env file for more reference check the redis documentation [here](https://redis.io/documentation).
+</i>
 
 ```bash
 node server
