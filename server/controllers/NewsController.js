@@ -20,7 +20,7 @@ const newsController = async (_, res) => {
 
     const news_data = await client.get(cache_key);
     if (news_data) {
-      // console.log("Cache hit");
+      console.log("Cache hit");
       return res.status(200).send(JSON.parse(news_data));
     } else {
       const response = await axios.get(url);
