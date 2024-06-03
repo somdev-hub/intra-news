@@ -41,7 +41,7 @@ const HomePage = (): JSX.Element => {
   useEffect(() => {
     const getNews: () => Promise<void> = async () => {
       try {
-        const response = await axios.get("http://localhost:3600/api/news");
+        const response = await axios.get("https://intra-news.onrender.com/api/news");
         setNews(response.data as Article[]);
       } catch (error) {
         console.error(error);
@@ -50,7 +50,7 @@ const HomePage = (): JSX.Element => {
     const getHeadlines: () => Promise<void> = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3600/api/top-headlines"
+          "https://intra-news.onrender.com/api/top-headlines"
         );
         setTopHeadlines(response.data as TopHeadlines);
       } catch (error) {
